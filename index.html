@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Everett Irving | Accounting & Professional Services</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #2980b9;
+            --bg-light: #f4f4f9;
+            --text-dark: #333;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+        }
+        /* Navigation */
+        nav {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav h1 { margin: 0; font-size: 1.5rem; }
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+        }
+        nav ul li { margin-left: 20px; }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover { color: var(--accent-color); }
+
+        /* Hero Section */
+        header {
+            background: var(--bg-light);
+            padding: 4rem 0;
+            text-align: center;
+            border-bottom: 5px solid var(--accent-color);
+        }
+        header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        header p { font-size: 1.2rem; color: #666; }
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: #fff;
+            padding: 0.7rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 1rem;
+        }
+        .btn:hover { background: var(--primary-color); }
+
+        /* Sections */
+        section { padding: 3rem 0; }
+        h2 { text-align: center; color: var(--primary-color); margin-bottom: 2rem; }
+        
+        /* Resume Styles */
+        .job, .school {
+            background: #fff;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--accent-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+        }
+        .job-title { font-weight: bold; font-size: 1.2rem; }
+        .job-company { color: #666; font-style: italic; }
+        .job-date { color: #888; font-size: 0.9rem; }
+        
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .service-card {
+            background: #fff;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: #fff;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        footer a { color: #fff; text-decoration: underline; }
+
+        @media(max-width: 768px) {
+            .job-header { flex-direction: column; }
+            nav .container { flex-direction: column; }
+            nav ul { margin-top: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container">
+            <h1>Everett Irving</h1>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#services">Booking Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="about">
+        <div class="container">
+            <h1>Everett Irving</h1>
+            <p>Accounting Professional & Engineer Drafter</p>
+            <p>B.S. Accounting, Utah Valley University (Est. May 2026)</p>
+            <a href="#contact" class="btn">Get in Touch</a>
+        </div>
+    </header>
+
+    <section id="services">
+        <div class="container">
+            <h2>Business Services</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Offering professional accounting and technical services. Click below to book a consultation.</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Tax Preparation</h3>
+                    <p>Consultation for individuals, S-Corps, LLCs, and trusts. Review of documents and return planning.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+                <div class="service-card">
+                    <h3>AutoCAD Drafting</h3>
+                    <p>Engineering and architectural drawing reviews. Plan creation using AutoCAD for manufacturing processes.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+                <div class="service-card">
+                    <h3>Data Analysis</h3>
+                    <p>Custom Excel and Google Sheets data tables, reporting, and shop data management.</p>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="resume" style="background-color: #eee;">
+        <div class="container">
+            <h2>Professional Experience</h2>
+
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-title">Highway Maintenance</span>
+                    <span class="job-company">K & D Associates</span>
+                    <span class="job-date">July 2025 – Aug 2025</span>
+                </div>
+                <ul>
+                    <li>Set up working procedures for training new employees and tested collection methods.</li>
+                    <li>Prioritized safety protocols to accomplish work efficiently and securely.</li>
+                    <li>Operated machinery and directed others in training exercises.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-title">Tax Intern</span>
+                    <span class="job-company">DBNtax (American Fork, UT)</span>
+                    <span class="job-date">Jan 2025 – Apr 2025</span>
+                </div>
+                <ul>
+                    <li>Reviewed tax information for individuals, S-Corps, LLCs, C-Corps, and trusts to determine return requirements.</li>
+                    <li>Communicated effectively with clients regarding appointments and return details.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-title">Engineer Drafter</span>
+                    <span class="job-company">HK Composites (American Fork, UT)</span>
+                    <span class="job-date">Mar 2022 – July 2024</span>
+                </div>
+                <ul>
+                    <li>Reviewed engineering and architectural drawings to create manufacturing plans using AutoCAD.</li>
+                    <li>Utilized Excel and Google Sheets to create data tables for shop manufacturing goods.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-title">Warehouse Employee</span>
+                    <span class="job-company">HK Composites</span>
+                    <span class="job-date">Mar 2020 – Mar 2022</span>
+                </div>
+                <ul>
+                    <li>Operated heavy machinery, forklifts, CNC tables, and custom drill tables.</li>
+                    <li>Followed per-engineered plans for accuracy in manufacturing goods.</li>
+                    <li>Conducted quality control measuring and verified production sheets.</li>
+                </ul>
+            </div>
+
+            <h2>Education</h2>
+            <div class="school">
+                <div class="job-header">
+                    <span class="job-title">Bachelor's in Accounting</span>
+                    <span class="job-company">Utah Valley University (Orem, UT)</span>
+                    <span class="job-date">Graduation: May 2026</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container" style="text-align: center;">
+            <h2>Contact Me</h2>
+            <p>If you are interested in my services or would like to discuss a project, please reach out.</p>
+            <p><strong>Email:</strong> <a href="mailto:EverettBIrving@gmail.com" style="color: var(--primary-color);">EverettBIrving@gmail.com</a></p>
+            <p><strong>Location:</strong> Orem, UT</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Everett Irving. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

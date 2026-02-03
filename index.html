@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Everett Irving | Accounting & Professional Services</title>
     <style>
+        /* --- CSS STYLES --- */
         :root {
             --primary-color: #2c3e50;
             --accent-color: #2980b9;
@@ -70,6 +71,9 @@
             text-decoration: none;
             border-radius: 5px;
             margin-top: 1rem;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
         }
         .btn:hover { background: var(--primary-color); }
 
@@ -105,7 +109,7 @@
             background: #fff;
             border: 1px solid #ddd;
             border-radius: 8px;
-            overflow: hidden; /* Keeps image inside rounded corners */
+            overflow: hidden;
             transition: transform 0.3s ease;
             display: flex;
             flex-direction: column;
@@ -117,7 +121,7 @@
         .service-card img {
             width: 100%;
             height: 200px;
-            object-fit: cover; /* Ensures images fill the box without stretching */
+            object-fit: cover;
             border-bottom: 3px solid var(--accent-color);
         }
         .service-content {
@@ -139,10 +143,57 @@
         }
         footer a { color: #fff; text-decoration: underline; }
 
+        /* --- MODAL (POPUP) STYLES --- */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.6); 
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto; 
+            padding: 2rem;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover, .close:focus { color: black; text-decoration: none; }
+        
+        /* Form Styles */
+        .form-group { margin-bottom: 1.5rem; text-align: left; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box; 
+        }
+        .form-group textarea { height: 100px; resize: vertical; }
+
         @media(max-width: 768px) {
             .job-header { flex-direction: column; }
             nav .container { flex-direction: column; }
             nav ul { margin-top: 1rem; }
+            .modal-content { margin: 20% auto; }
         }
     </style>
 </head>
@@ -165,7 +216,7 @@
             <h1>Everett Irving</h1>
             <p>Accounting Professional & Engineer Drafter</p>
             <p>B.S. Accounting, Utah Valley University (Est. May 2026)</p>
-            <a href="#contact" class="btn">Get in Touch</a>
+            <button class="btn" onclick="openModal('General Inquiry')">Get in Touch</button>
         </div>
     </header>
 
@@ -180,7 +231,7 @@
                     <div class="service-content">
                         <h3>Tax Preparation</h3>
                         <p>Consultation for individuals, S-Corps, LLCs, and trusts. Review of documents and return planning.</p>
-                        <a href="#" class="btn">Book Now</a>
+                        <button class="btn book-btn" data-service="Tax Preparation">Book Consultation</button>
                     </div>
                 </div>
 
@@ -189,7 +240,7 @@
                     <div class="service-content">
                         <h3>AutoCAD Drafting</h3>
                         <p>Engineering and architectural drawing reviews. Plan creation using AutoCAD for manufacturing processes.</p>
-                        <a href="#" class="btn">Book Now</a>
+                        <button class="btn book-btn" data-service="AutoCAD Drafting">Book Consultation</button>
                     </div>
                 </div>
 
@@ -198,7 +249,7 @@
                     <div class="service-content">
                         <h3>Data Analysis</h3>
                         <p>Custom Excel and Google Sheets data tables, reporting, and shop data management.</p>
-                        <a href="#" class="btn">Book Now</a>
+                        <button class="btn book-btn" data-service="Data Analysis">Book Consultation</button>
                     </div>
                 </div>
 
@@ -276,6 +327,7 @@
             <h2>Contact Me</h2>
             <p>If you are interested in my services or would like to discuss a project, please reach out.</p>
             <p><strong>Email:</strong> <a href="mailto:EverettBIrving@gmail.com" style="color: var(--primary-color);">EverettBIrving@gmail.com</a></p>
+            <p><strong>Phone:</strong> 405-795-6091</p>
             <p><strong>Location:</strong> Orem, UT</p>
         </div>
     </section>
@@ -285,6 +337,108 @@
             <p>&copy; 2026 Everett Irving. All Rights Reserved.</p>
         </div>
     </footer>
+
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Request Consultation</h2>
+            <p>Please fill out your details below. Clicking "Send" will draft an email in your default mail app.</p>
+            
+            <form id="bookingForm">
+                
+                <input type="hidden" id="serviceInterest" name="Service Interest" value="General">
+
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required placeholder="John Doe">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="email" required placeholder="john@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Project Details</label>
+                    <textarea id="message" name="message" placeholder="Briefly describe what you need help with..."></textarea>
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%;">Draft Email Request</button>
+            </form>
+            </div>
+    </div>
+
+    <script>
+        // Get elements
+        const modal = document.getElementById("bookingModal");
+        const closeBtn = document.getElementsByClassName("close")[0];
+        const serviceInput = document.getElementById("serviceInterest");
+        const modalTitle = document.getElementById("modalTitle");
+        const form = document.getElementById("bookingForm");
+
+        // Function to open modal
+        function openModal(serviceName) {
+            modal.style.display = "block";
+            serviceInput.value = serviceName; // Auto-fill the hidden input
+            modalTitle.innerText = "Request: " + serviceName;
+        }
+
+        // Add click event to all "Book Consultation" buttons
+        document.querySelectorAll('.book-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const service = this.getAttribute('data-service');
+                openModal(service);
+            });
+        });
+
+        // Close when clicking (x)
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Close when clicking outside the box
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // --- EMAIL GENERATION LOGIC ---
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Stop page refresh
+
+            // 1. Get user values
+            const service = document.getElementById("serviceInterest").value;
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const message = document.getElementById("message").value;
+
+            // 2. Format the email
+            const subject = encodeURIComponent("Consultation Request: " + service);
+            const body = encodeURIComponent(
+                "Hello Everett,\n\n" +
+                "I would like to request a consultation for: " + service + ".\n\n" +
+                "--- Client Details ---\n" +
+                "Name: " + name + "\n" +
+                "Email: " + email + "\n" +
+                "Phone: " + phone + "\n\n" +
+                "--- Project Details ---\n" +
+                message
+            );
+
+            // 3. Open Email Client
+            window.location.href = "mailto:EverettBIrving@gmail.com?subject=" + subject + "&body=" + body;
+
+            // Optional: Close modal
+            modal.style.display = "none";
+        });
+    </script>
 
 </body>
 </html>
